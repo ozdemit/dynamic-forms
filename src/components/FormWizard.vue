@@ -1,8 +1,8 @@
 <template>
   <div>
-    <FormPlanPicker v-if="currentStepNumber === 1"/>
-    <FormUserDetails v-if="currentStepNumber === 2"/>
-    <FormAddress v-if="currentStepNumber === 3"/>
+    <FormPlanPicker v-if="currentStepNumber === 1" @update="processStep"/>
+    <FormUserDetails v-if="currentStepNumber === 2" @update="processStep"/>
+    <FormAddress v-if="currentStepNumber === 3" @update="processStep"/>
     <FormReviewOrder v-if="currentStepNumber === 4"/>
 
     <div class="progress-bar">
@@ -67,6 +67,9 @@ export default {
     },
     goNext () {
       this.currentStepNumber++
+    },
+    processStep (stepData) {
+      Object.assign(this.form, stepData)
     }
   }
 }

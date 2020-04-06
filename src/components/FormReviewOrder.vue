@@ -15,7 +15,7 @@
 
       <div class="plans">
         <div class="plan active-plan">
-          <div class="weight">
+          <div class="weight div_w">
             PLAN WEIGHT
           </div>
 
@@ -43,7 +43,7 @@
         Treat yourself by leveling up your monthly box
       </p>
 
-      <div class="options">
+      <div @change="update" class="options">
         <div class="option">
           <input v-model="form.chocolate" type="checkbox" value="chocolate" id="chocolate">
           <label for="chocolate">4 pcs. Single Origin Chocolate (+$4/month)</label>
@@ -88,10 +88,23 @@
       totalPrice () {
         return 0
       }
+    },
+    methods: {
+      submit () {
+        if (!this.$v.$invalid) {
+          this.$emit('update', {
+            chocolate: this.form.chocolate,
+            otherTread: this.form.otherTreat
+          })
+        }
+      }
     }
   }
 </script>
 
 <style scoped>
-
+.div_w {
+  font-size: 1.4rem !important;
+  padding-left: 8px !important;
+}
 </style>
